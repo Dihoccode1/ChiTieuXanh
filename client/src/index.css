@@ -96,11 +96,54 @@
   --color-rose-500: #f43f5e;
 
   /* -------------------------------------------------------
-     BACKGROUND / FOREGROUND
-     ------------------------------------------------------- */
+     BACKGROUND / FOREGROUND (map từ biến shadcn ở :root/.dark)
+     -------------------------------------------------------
+     QUAN TRỌNG: phải dùng var(--background) chứ không phải
+     hardcode #ffffff, nếu không thì class "bg-background",
+     "text-foreground"... sẽ KHÔNG đổi màu khi bật dark mode,
+     vì @theme chỉ đọc giá trị 1 lần lúc build, còn var(--x)
+     thì đọc runtime theo CSS variable đang active.
+  ========================================================= */
 
-  --color-background: #ffffff;
-  --color-foreground: #1e293b;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* -------------------------------------------------------
+     SHADCN SEMANTIC COLORS
+     -------------------------------------------------------
+     Nhóm này ĐANG BỊ THIẾU trong file gốc. Nếu không khai báo
+     ở đây, Tailwind v4 sẽ KHÔNG sinh ra các utility class như
+     bg-primary, text-primary-foreground, bg-card, bg-popover,
+     bg-muted, bg-accent, bg-destructive, border-border,
+     bg-input, ring-ring... dù các biến --primary, --card,...
+     đã có ở :root/.dark. Đây là nguyên nhân phổ biến khiến
+     component shadcn/ui bị mất màu/mất style.
+  ========================================================= */
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
   /* -------------------------------------------------------
      TYPOGRAPHY
@@ -464,7 +507,7 @@
 
   border-radius: 1.5rem;
 
-  background-color: white;
+  background-color: var(--card);
 
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
