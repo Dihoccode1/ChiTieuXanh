@@ -7,7 +7,14 @@ const CallActionGroup = ({ notices, action, onSubmit }) => {
   return (
     <div className="flex items-center   flex-col">
       {/* Truyền thẳng tham chiếu action.icon */}
-      <ActionButton action={action.text} Icon={action.icon} onClick={onSubmit} />
+      <ActionButton
+        action={action.text}
+        Icon={action.icon}
+        onClick={() => {
+          onSubmit();
+          navigate("/");
+        }}
+      />
       <div className="flex gap-2">
         {" "}
         <p>{notices.question}</p>
@@ -25,4 +32,3 @@ const CallActionGroup = ({ notices, action, onSubmit }) => {
 };
 
 export default CallActionGroup;
-
