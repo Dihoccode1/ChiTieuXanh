@@ -1,0 +1,506 @@
+@import "tailwindcss";
+
+/* =========================================================
+   1. DARK MODE
+   =========================================================
+   Tailwind v4 mặc định không dùng dark mode theo class
+   giống cách cũ của Tailwind v3.
+
+   Dự án sử dụng:
+   <html class="dark">
+
+   Vì vậy ta custom lại variant "dark".
+========================================================= */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================
+   2. DESIGN TOKENS
+   =========================================================
+   Các giá trị trong @theme sẽ tự động tạo ra utility
+   class của Tailwind.
+
+   Ví dụ:
+   --color-primary
+   -> bg-primary
+   -> text-primary
+   -> border-primary
+
+   --radius-xl
+   -> rounded-xl
+
+   --font-sans
+   -> font-sans
+========================================================= */
+
+@theme {
+  /* -------------------------------------------------------
+     FONT
+     ------------------------------------------------------- */
+
+  /* Font mặc định theo Design Spec */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+
+  /* -------------------------------------------------------
+     BRAND COLOR — EMERALD
+     ------------------------------------------------------- */
+
+  /* Emerald 400 */
+  --color-emerald-400: #34d399;
+
+  /* Emerald 500 — màu chính */
+  --color-emerald-500: #10b981;
+
+  /* Emerald 600 — hover */
+  --color-emerald-600: #059669;
+
+  /* Emerald 700 */
+  --color-emerald-700: #047857;
+
+  /* Emerald 900 — heading / brand */
+  --color-emerald-900: #064e3b;
+
+  /* Green 500 — gradient logo */
+  --color-green-500: #22c55e;
+
+  /* -------------------------------------------------------
+     NEUTRAL — SLATE
+     ------------------------------------------------------- */
+
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+
+  /* -------------------------------------------------------
+     STATUS COLORS
+     ------------------------------------------------------- */
+
+  /* Ghim */
+  --color-amber-100: #fef3c7;
+  --color-amber-500: #f59e0b;
+
+  /* Edit */
+  --color-blue-100: #dbeafe;
+  --color-blue-500: #3b82f6;
+
+  /* Delete / Logout */
+  --color-rose-100: #ffe4e6;
+  --color-rose-500: #f43f5e;
+
+  /* -------------------------------------------------------
+     BACKGROUND / FOREGROUND
+     ------------------------------------------------------- */
+
+  --color-background: #ffffff;
+  --color-foreground: #1e293b;
+
+  /* -------------------------------------------------------
+     TYPOGRAPHY
+     ------------------------------------------------------- */
+
+  /* Brand Title / Page Heading */
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 1.2;
+
+  /* Section Title */
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.3;
+
+  /* Note Title */
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.4;
+
+  /* Body */
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.6;
+
+  /* Caption */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.5;
+
+  /* -------------------------------------------------------
+     BORDER RADIUS
+     ------------------------------------------------------- */
+
+  /* Input / Button */
+  --radius-xl: 0.75rem;
+
+  /* Một số component nhỏ */
+  --radius-2xl: 1rem;
+
+  /* Card / Modal */
+  --radius-3xl: 1.5rem;
+
+  /* -------------------------------------------------------
+     BREAKPOINTS
+     ------------------------------------------------------- */
+
+  /*
+   * Mobile:
+   * < 640px
+   *
+   * Tablet:
+   * >= 640px
+   *
+   * Laptop:
+   * >= 1024px
+   *
+   * Desktop:
+   * >= 1280px
+   */
+
+  --breakpoint-sm: 640px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+/* =========================================================
+   3. SHADCN/UI DESIGN TOKENS
+   =========================================================
+   Đây là nhóm biến mà shadcn/ui sử dụng.
+
+   Không nên bỏ nhóm này nếu project đã cài shadcn.
+
+   Component shadcn có thể sử dụng:
+   bg-background
+   text-foreground
+   bg-primary
+   text-primary-foreground
+   border
+   ring-ring
+   rounded-xl
+========================================================= */
+
+:root {
+  /* -------------------------------------------------------
+     BACKGROUND
+     ------------------------------------------------------- */
+
+  --background: #ffffff;
+  --foreground: #1e293b;
+
+  /* -------------------------------------------------------
+     CARD
+     ------------------------------------------------------- */
+
+  --card: #ffffff;
+  --card-foreground: #1e293b;
+
+  /* -------------------------------------------------------
+     POPOVER
+     ------------------------------------------------------- */
+
+  --popover: #ffffff;
+  --popover-foreground: #1e293b;
+
+  /* -------------------------------------------------------
+     PRIMARY — EMERALD
+     ------------------------------------------------------- */
+
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+
+  /* -------------------------------------------------------
+     SECONDARY
+     ------------------------------------------------------- */
+
+  --secondary: #f1f5f9;
+  --secondary-foreground: #334155;
+
+  /* -------------------------------------------------------
+     MUTED
+     ------------------------------------------------------- */
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  /* -------------------------------------------------------
+     ACCENT
+     ------------------------------------------------------- */
+
+  --accent: #f1f5f9;
+  --accent-foreground: #334155;
+
+  /* -------------------------------------------------------
+     DESTRUCTIVE
+     ------------------------------------------------------- */
+
+  --destructive: #f43f5e;
+  --destructive-foreground: #ffffff;
+
+  /* -------------------------------------------------------
+     BORDER / INPUT
+     ------------------------------------------------------- */
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+
+  /* -------------------------------------------------------
+     FOCUS RING
+     ------------------------------------------------------- */
+
+  --ring: #34d399;
+
+  /* -------------------------------------------------------
+     BORDER RADIUS
+     ------------------------------------------------------- */
+
+  --radius: 0.75rem;
+}
+
+/* =========================================================
+   4. DARK MODE
+   =========================================================
+   Mapping theo Design Spec:
+
+   Light:
+   white       -> slate-800
+   slate-50    -> slate-900
+   slate-200   -> slate-700
+   slate-800   -> slate-50
+
+   Emerald vẫn giữ vai trò màu brand.
+========================================================= */
+
+.dark {
+  /* -------------------------------------------------------
+     BACKGROUND
+     ------------------------------------------------------- */
+
+  --background: #0f172a;
+  --foreground: #f8fafc;
+
+  /* -------------------------------------------------------
+     CARD
+     ------------------------------------------------------- */
+
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+
+  /* -------------------------------------------------------
+     POPOVER
+     ------------------------------------------------------- */
+
+  --popover: #1e293b;
+  --popover-foreground: #f8fafc;
+
+  /* -------------------------------------------------------
+     PRIMARY
+     ------------------------------------------------------- */
+
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+
+  /* -------------------------------------------------------
+     SECONDARY
+     ------------------------------------------------------- */
+
+  --secondary: #334155;
+  --secondary-foreground: #f8fafc;
+
+  /* -------------------------------------------------------
+     MUTED
+     ------------------------------------------------------- */
+
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
+
+  /* -------------------------------------------------------
+     ACCENT
+     ------------------------------------------------------- */
+
+  --accent: #334155;
+  --accent-foreground: #f8fafc;
+
+  /* -------------------------------------------------------
+     DESTRUCTIVE
+     ------------------------------------------------------- */
+
+  --destructive: #f43f5e;
+  --destructive-foreground: #ffffff;
+
+  /* -------------------------------------------------------
+     BORDER / INPUT
+     ------------------------------------------------------- */
+
+  --border: #334155;
+  --input: #334155;
+
+  /* -------------------------------------------------------
+     FOCUS
+     ------------------------------------------------------- */
+
+  --ring: #34d399;
+}
+
+/* =========================================================
+   5. BASE STYLE
+   ========================================================= */
+
+@layer base {
+  /*
+   * Box sizing
+   *
+   * Giúp width/height bao gồm cả padding và border.
+   */
+  *,
+  ::after,
+  ::before {
+    box-sizing: border-box;
+  }
+
+  /*
+   * HTML
+   */
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /*
+   * BODY
+   */
+
+  body {
+    margin: 0;
+
+    min-height: 100vh;
+
+    background-color: var(--background);
+    color: var(--foreground);
+
+    font-family: var(--font-sans);
+
+    /*
+     * Chuyển đổi Light/Dark mượt hơn.
+     */
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
+  }
+
+  /*
+   * BUTTON
+   */
+
+  button {
+    cursor: pointer;
+  }
+
+  /*
+   * INPUT / TEXTAREA
+   */
+
+  input,
+  textarea {
+    outline: none;
+  }
+
+  /*
+   * Khi input được focus:
+   *
+   * ring-2 emerald-400
+   */
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+  }
+}
+
+/* =========================================================
+   6. CUSTOM UTILITY
+   =========================================================
+   Một số utility mang tính semantic cho project.
+
+   Không bắt buộc phải dùng.
+========================================================= */
+
+@utility container-app {
+  width: 100%;
+  max-width: 1280px;
+
+  margin-inline: auto;
+
+  padding-inline: 1rem;
+
+  /*
+   * >= 640px
+   */
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+
+  /*
+   * >= 1024px
+   */
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+}
+
+/* =========================================================
+   7. COMMON COMPONENT UTILITIES
+   ========================================================= */
+
+/*
+ * Card chuẩn của Note App
+ *
+ * padding: 24px
+ * radius: 24px
+ * shadow: shadow-sm
+ */
+
+@utility note-card {
+  padding: 1.5rem;
+
+  border-radius: 1.5rem;
+
+  background-color: white;
+
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+  transition:
+    box-shadow 300ms ease,
+    transform 300ms ease;
+
+  &:hover {
+    box-shadow:
+      0 20px 25px -5px rgb(0 0 0 / 0.1),
+      0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+}
+
+/*
+ * Dark mode cho Note Card
+ */
+
+@utility note-card-dark {
+  background-color: var(--card);
+
+  border-color: #334155;
+}
+
+/* =========================================================
+   8. ACCESSIBILITY
+   ========================================================= */
+
+/*
+ * Khi người dùng điều hướng bằng keyboard,
+ * focus element sẽ dễ nhìn thấy hơn.
+ */
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
