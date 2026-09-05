@@ -5,7 +5,7 @@ import CallActionGroup from "./CallActionGroup/CallActionGroup";
 import { LogInIcon, User } from "lucide-react";
 import toast from "react-hot-toast";
 
-const FormData = () => {
+const FormData = ({ isSignUp }) => {
   const formConfig = {
     signUp: {
       fields: [
@@ -71,7 +71,6 @@ const FormData = () => {
     },
   };
 
-  const [isSignUp, setIsSignUp] = useState(true);
   const [formValues, setFormValues] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -145,7 +144,7 @@ const FormData = () => {
       toast.error(
         isSignUp
           ? "Vui lòng kiểm tra lại thông tin đăng ký!"
-          : "Vui lòng kiểm tra lại thông tin đăng nhập!"
+          : "Vui lòng kiểm tra lại thông tin đăng nhập!",
       );
       return;
     }
@@ -175,7 +174,9 @@ const FormData = () => {
         onChange={handleChange}
       />
       <CallActionGroup
-        notices={isSignUp ? formConfig.signUp.notices : formConfig.login.notices}
+        notices={
+          isSignUp ? formConfig.signUp.notices : formConfig.login.notices
+        }
         action={isSignUp ? formConfig.signUp.action : formConfig.login.action}
         setIsSignUp={handleSetIsSignUp}
         onSubmit={handleSubmit}
